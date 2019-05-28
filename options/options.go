@@ -112,35 +112,45 @@ func (o *OptionReader) readValue(in interface{}, out interface{}) error {
 
 	switch target := out.(type) {
 	case *string:
-		data, ok := in.(string)
+		data, ok := in.(*string)
 		if !ok {
 			return errs.Newf("value was %T, not %T", out, data)
 		}
-		*target = data
+		if data != nil {
+			*target = *data
+		}
 	case *bool:
-		data, ok := in.(bool)
+		data, ok := in.(*bool)
 		if !ok {
 			return errs.Newf("value was %T, not %T", out, data)
 		}
-		*target = data
+		if data != nil {
+			*target = *data
+		}
 	case *int16:
-		data, ok := in.(int16)
+		data, ok := in.(*int16)
 		if !ok {
 			return errs.Newf("value was %T, not %T", out, data)
 		}
-		*target = data
+		if data != nil {
+			*target = *data
+		}
 	case *int32:
-		data, ok := in.(int32)
+		data, ok := in.(*int32)
 		if !ok {
 			return errs.Newf("value was %T, not %T", out, data)
 		}
-		*target = data
+		if data != nil {
+			*target = *data
+		}
 	case *int64:
-		data, ok := in.(int64)
+		data, ok := in.(*int64)
 		if !ok {
 			return errs.Newf("value was %T, not %T", out, data)
 		}
-		*target = data
+		if data != nil {
+			*target = *data
+		}
 	default:
 		return errs.Newf("helper could not read %T, please use `GetOption...` directly", target)
 	}
